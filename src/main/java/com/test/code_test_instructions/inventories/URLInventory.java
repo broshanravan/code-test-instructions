@@ -1,8 +1,12 @@
 package com.test.code_test_instructions.inventories;
 
 /**
- * to manage and maintain a record of provided URLs
- * and the customized versions
+ * to manage and maintain a record of provided
+ * and shortened.
+ * The application will use a noSQl mongoDB to
+ * record the data ion original and customized URLs
+ * keeping customized URLs as a key to make sure that
+ * they are not reused
  */
 
 import com.test.code_test_instructions.beans.URLBean;

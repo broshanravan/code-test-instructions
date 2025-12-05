@@ -19,4 +19,6 @@ public class URLBean {
 
     private URL originalURL;
     private URL customizedURL;
+    private void testing(){
+    }
 }
