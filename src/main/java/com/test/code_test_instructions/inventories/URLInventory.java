@@ -10,49 +10,15 @@ package com.test.code_test_instructions.inventories;
  */
 
 import com.test.code_test_instructions.beans.URLBean;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Optional;
+
 @Repository
-public class UrlInventory {
+public interface URLInventory extends MongoRepository<URLBean, String> {
+    public Optional<URLBean> findURLBeanByCustomizedURL(URL customizedURL);
 
 
-    /**
-     * To retrieve a single URL bean
-     * containing original and
-     * customized
-     * @return
-     */
-    public URLBean getURLBean(){
-            return new URLBean();
-     }
-
-    public List<URLBean> getAllURLBeans(){
-
-        List<URLBean> urlBeansList = new LinkedList<URLBean>();
-
-        return urlBeansList;
-
-
-    }
-
-    /**
-     * To save the details of a URL beans
-     * after it has been created
-     * @param urlBean
-     */
-    public void addURLBean(URLBean urlBean){
-
-    }
-
-    /**
-     * To delete exiting Urls and
-     * their costumized counterparts
-     * @param urlBean
-     */
-    public void deleteRLBean(URLBean urlBean){
-
-        }
 }
