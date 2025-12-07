@@ -1,0 +1,50 @@
+	
+	html{
+		height:100% ;
+		margin: 0;
+		padding: 0;
+		box-sizing:border-box;
+	}
+	body {
+		position: relative;
+		margin: 0;
+		width: 100vw;
+		height: 100vh;
+	}
+
+
+	.register_body{
+		background: url("/images/Photos/pixel_1.jpg") no-repeat center center fixed;
+		background-position: center top;
+		background-size: cover;
+		margin-bottom: 250px;
+	}
+
+
+				
+		h1   {color:red}
+		h2   {color:green}
+		
+		
+		/* Add a black background color to the top navigation */
+
+
+		.button{
+			color: #083d72;
+			background: transparent;
+			border-radius: 20px;
+			margin: 0 auto;
+			height:25px;
+			width:75px; 
+			background: transparent;
+			border-radius: 20px;
+			font: bold 10pt Arial, Helvetica, sans-serif;
+		}
+
+		.textFld{
+			width: 175px;
+		}
+
+
+		
+		
