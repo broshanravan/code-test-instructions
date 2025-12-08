@@ -8,6 +8,7 @@ import com.test.code_test_instructions.inventories.URLInventory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -44,7 +45,7 @@ public class UrlBeanProcessingServiceTest {
     URL originalURL;
 
 
-    @Before
+    @BeforeAll
     public void init() throws MalformedURLException {
         urlBeanProcessingService = mock(UrlBeanProcessingService.class);
         originalURL = new URL("http://google.com");
@@ -71,11 +72,8 @@ public class UrlBeanProcessingServiceTest {
     public void createCustomURLTest() throws MalformedURLException {
         try {
             URL customizedUrl = new URL("http://myGoogle");
-            URLBean urBean;
-
-            urBean = urlBeanProcessingService.customizeUrl(originalURL, "MyGoogle");
-            String orginalURL = urBean.getOriginalURL().getRef();
-
+            URLBean urlBean = urlBeanProcessingService.customizeUrl(originalURL, "MyGoogle");
+            String orginalURL = urlBean.getOriginalURL().getRef();
             Assertions.assertEquals("customizedUrl",orginalURL);
 
             } catch (MalformedURLException mfExe){
