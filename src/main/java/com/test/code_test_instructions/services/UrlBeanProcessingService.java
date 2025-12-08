@@ -3,6 +3,8 @@ package com.test.code_test_instructions.services;
 
 import com.test.code_test_instructions.beans.URLBean;
 import com.test.code_test_instructions.inventories.URLInventory;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
+
+@Getter
+@Setter
 @Service
+
 public class UrlBeanProcessingService {
 
     @Autowired
