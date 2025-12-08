@@ -1,3 +1,21 @@
+# Implementation and use
+The code is implemented in two parts.
+The front end is developed using Nodejs and backend used Java 20.
+For data persistence a NoSQL MongoDB data storage has been previsioned. However, in order to keep the data saves even after the application is stopes,
+instead of using an in memory Database a NoSQL DB has been provisioned on MongoDB Atlas on the following address
+This would allow the records to be added into the DB in shape of URL objects rather than Strings.
+In case you need to inspect the data, the username and password are in the properties file of the java application.
+
+NodeJs server is running on port 3500 and entry point for the page that used for maintaining the data would is
+
+http://host:port/ /url_customization
+upon changing submitting the data the NodeJs application will call APIs on the java app and checks if the record exists 
+before attempting to add a new one, displaying or deleting it
+
+
+There are still a few tidy up that needs to be done and most of unit tests are not ready to be pushed.
+In case The time could be extended by another 48 hours the rest can be done.
+
 # URL Shortener Coding Task
 
 ## Task
