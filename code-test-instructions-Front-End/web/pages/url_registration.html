@@ -6,12 +6,13 @@
         <script src="scripts/customization.js"></script>
     </head>
     
-    <body class="register_body">
-        <form  name="urlRegistrationForm" id="urlRegistrationForm"  onsubmit="return false;">
+    <body class="register_body" id="register_body">
+        <form  method="GET" action="/urlRegistration" name="urlRegistrationForm" id="urlRegistrationForm">
+
             <table class="noselect" id="main_table">
                 <tr>
-                    <td><b><label>Original URL</label></b></td>
-                    <td><input type="text" id="originalFld" class="textFld"/>*</td>
+                    <td><b><label for="originalFld">Original URL</label></b></td>
+                    <td><input type="text" id="originalFld" name="originalFld" class="textFld"/>*</td>
     
                     <td>&nbsp;</td>
                     <td><label style="color:red; display:none;" id="postCodeError">Please insert a URL</label></td>
@@ -21,31 +22,29 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td><b><label>Customized URL</label></b></td>
-                    <td><input type="text" id="customizeLbl" class="textFld"/>*</td>
+                    <td><b><label for="customizedFld">Customized URL</label></b></td>
+                    <td><input type="text" id="customizedFld" name ="customizedFld" class="textFld"/>*</td>
     
                     <td>&nbsp;</td>
                     <td><label style="color:red; display:none;" id="customizedError">Please insert The required customized URL</label></td>
                 </tr>
             </table>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><button class="button" type="submit" name="processBtn" value="validateBtn" id="validateBtn" >validate</button></td>
+                                <td><button class="button" type="submit" name="processBtn" value="customizeBtn"  id="customize">customize</button></td>
+                                <td><button class="button" type="submit" name="processBtn" value="findBtn"  id="findOriginal">find</button></td>
+                                <td><button class="button" type="submit" name="processBtn" value="deleteBtn"  id="delete">delete</button></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </form>
     </body>
-    
-    <table>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                <table>
-                    <tr>
-                        <td><button class="button" id="Customize" onclick="validateForm()">Customize</button></td>
-                        <td><button class="button" id="Find" onclick="validateForm()">Find</button></td>
-                        <td><button class="button" id="delete" onclick="validateForm()">Delete</button></td>
-                        <td><button class="button" id="clear"onclick="clearAllFields()">Clear</button></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
 
 </html>

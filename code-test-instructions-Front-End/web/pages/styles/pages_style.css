@@ -12,9 +12,15 @@
 		height: 100vh;
 	}
 
+	.main_table {
+		margin: auto;
+		width: 50%;
+		border: 3px solid green;
+		padding: 10px;
+	}
 
 	.register_body{
-		background: url("/images/Photos/pixel_1.jpg") no-repeat center center fixed;
+		background: url("web/pages/images/Photos/pixel_1.jpg") no-repeat center center fixed;
 		background-position: center top;
 		background-size: cover;
 		margin-bottom: 250px;
@@ -35,7 +41,7 @@
 			border-radius: 20px;
 			margin: 0 auto;
 			height:25px;
-			width:75px; 
+			width:85px;
 			background: transparent;
 			border-radius: 20px;
 			font: bold 10pt Arial, Helvetica, sans-serif;

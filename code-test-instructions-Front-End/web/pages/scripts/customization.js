@@ -1,5 +1,10 @@
+const express = require("express");
+const app = express();
+const fs =require("fs");
+
 const request = require('request')
 const axios = require('axios');
+
 
 exports.customizeURL = (original_URL,customized_URL) =>{
     const api_url = `http://localhost:8080/customizeTheURL?originalURLStr=${original_URL}&newCustomizedUrl=${customized_URL}`;
@@ -8,17 +13,14 @@ exports.customizeURL = (original_URL,customized_URL) =>{
     });
 
 }
+
 exports.getOriginalURL = async ( customized_URL) => {
-
     const api_url = `http://localhost:8080/getOriginalURL?newCustomizedUrl=${customized_URL}`;
-
     request({url:api_url},(error,response) =>{
         console.log(response.body);
     });
-
-
-
 }
+
 exports.deleteURLRecord = (customized_URL) =>{
     const api_url = `http://localhost:8080/deleteUrlRecord?customizedUrl=${customized_URL}`;
     axios
@@ -35,5 +37,6 @@ exports.deleteURLRecord = (customized_URL) =>{
         });
 }
 
-//this.getOriginalURL("google1")
-this.deleteURLRecord("mycnn")
+
+
+
