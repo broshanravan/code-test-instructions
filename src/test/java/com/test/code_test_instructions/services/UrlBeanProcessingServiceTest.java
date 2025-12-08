@@ -1,12 +1,18 @@
 package com.test.code_test_instructions.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.test.code_test_instructions.beans.URLBean;
 import com.test.code_test_instructions.inventories.URLInventory;
 
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
 
 import java.net.MalformedURLException;
@@ -14,10 +20,14 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.logging.Logger;
 ;
+import static org.mockito.ArgumentMatchers.assertArg;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 
 
 
+
+@SpringBootTest
 public class UrlBeanProcessingServiceTest {
 
 
@@ -25,14 +35,19 @@ public class UrlBeanProcessingServiceTest {
     final static Logger logger = Logger.getLogger(UrlBeanProcessingServiceTest.class.toString());
 
 
-    UrlBeanProcessingService urlBeanProcessingService = new UrlBeanProcessingService();
-    URLInventory urlInventory = Mockito.mock(URLInventory.class);
+    @Mock
+    private URLInventory urlInventory;;
+
+
+     static UrlBeanProcessingService urlBeanProcessingService;
 
     URL originalURL;
 
+
     @Before
     public void init() throws MalformedURLException {
-         originalURL = new URL("http://google.com");
+        urlBeanProcessingService = mock(UrlBeanProcessingService.class);
+        originalURL = new URL("http://google.com");
         URL customizedURL = new URL("http://myGoogle.com");
         when(urlInventory.findURLBeanByCustomizedURL(customizedURL))
                 .thenReturn(Optional.of(new URLBean(originalURL,customizedURL)));
@@ -40,7 +55,15 @@ public class UrlBeanProcessingServiceTest {
     }
 
 
+    @Test
+    public void getOriginalUrlTest() throws MalformedURLException, JsonProcessingException {
+        URL expectedURL = new URL("http://google.com");
+        Assertions.assertThrows(NullPointerException.class,()->{
+            URL originalURL = urlBeanProcessingService.getOriginalUrl("myGoogle.com");
+            assert(expectedURL.equals(originalURL));
+        });
 
+    }
 
 
 
@@ -51,9 +74,11 @@ public class UrlBeanProcessingServiceTest {
             URLBean urBean;
 
             urBean = urlBeanProcessingService.customizeUrl(originalURL, "MyGoogle");
-            String ref = urBean.getOriginalURL().getRef();
-            assert (ref.equalsIgnoreCase("customizedUrl"));
-        } catch (MalformedURLException mfExe){
+            String orginalURL = urBean.getOriginalURL().getRef();
+
+            Assertions.assertEquals("customizedUrl",orginalURL);
+
+            } catch (MalformedURLException mfExe){
             logger.warning(mfExe.getMessage());
         }catch (NullPointerException npExe){
             logger.warning(npExe.getMessage());
