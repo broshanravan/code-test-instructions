@@ -80,8 +80,14 @@ function processFormData(customizedUrl, originalUrl, buttonPressed){
 
     } else if(buttonPressed === "findBtn"){
         console.log("customizedUrl = " + customizedUrl);
-        console.log("originalUrl = " + originalUrl);
         let originalURL = customization.getOriginalURL(customizedUrl)
+
+        console.log("originalUrl = " + originalUrl);
+        if(originalURL===null){
+            originalURL= "Record does not exist"
+        }
+
+        console.log(originalURL)
 
     } else if(buttonPressed === "deleteBtn"){
         console.log("customizedUrl = " + customizedUrl);

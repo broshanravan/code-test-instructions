@@ -33,26 +33,43 @@ public class UrlBeanProcessingService {
     }
 
     public URL getOriginalUrl(String newCustomizedUrlTxt) throws MalformedURLException {
-        URL customizedUrl = new URL("http://" + newCustomizedUrlTxt);
-        Optional<URLBean> uRLBean = urlInventory.findURLBeanByCustomizedURL(customizedUrl);
 
-        return uRLBean.get().getOriginalURL();
+       if (customUrlExists(newCustomizedUrlTxt)){
+            URL customizedUrl = new URL(validateUrlFormat(newCustomizedUrlTxt.trim()));
+            Optional<URLBean> uRLBean = urlInventory.findURLBeanByCustomizedURL(customizedUrl);
+             return uRLBean.get().getOriginalURL();
+        } else {
+           return new URL("record does not exist");
+       }
     }
 
     public boolean customUrlExists(String newCustomizedUrlTxt) throws MalformedURLException {
-        URL customizedUrl = new URL("http://" + newCustomizedUrlTxt);
+        URL customizedUrl = new URL(validateUrlFormat(newCustomizedUrlTxt.trim()));
         Optional<URLBean> uRLBean = urlInventory.findURLBeanByCustomizedURL(customizedUrl);
         uRLBean.isPresent();
         return uRLBean.isPresent();
     }
 
     public URL deleteURLRecord(String customizedURLTxt) throws MalformedURLException {
-        URL customizedUrl = new URL("http://" + customizedURLTxt);
+        URL customizedUrl = new URL(validateUrlFormat( customizedURLTxt.trim()));
         Optional<URLBean> uRLBean = urlInventory.findURLBeanByCustomizedURL(customizedUrl);
         urlInventory.delete(uRLBean.orElse(new URLBean()));
         return customizedUrl;
        // return urlInventory.deleteByCustomizedURL(customizedURLTxt);
 
+    }
+
+    private String validateUrlFormat(String url){
+         //String protocol = url.substring(0, 6);
+         if(url.length()<6) {
+             url = "http://" + url;
+         } else {
+             String protocol = url.substring(0, 7);
+             if(!protocol.contains("http://")){
+                 url = "http://" + url;
+             }
+         }
+         return url;
     }
 
 

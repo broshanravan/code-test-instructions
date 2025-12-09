@@ -18,6 +18,7 @@ exports.getOriginalURL = async ( customized_URL) => {
     const api_url = `http://localhost:8080/getOriginalURL?newCustomizedUrl=${customized_URL}`;
     request({url:api_url},(error,response) =>{
         console.log(response.body);
+        return response.body
     });
 }
 
