@@ -16,11 +16,11 @@
 		margin: auto;
 		width: 50%;
 		border: 3px solid green;
-		padding: 10px;
+		padding: 80px;
 	}
 
 	.register_body{
-		background: url("web/pages/images/Photos/pixel_1.jpg") no-repeat center center fixed;
+		background: url("../images/Photos/pixel_1.jpg") no-repeat center center fixed;
 		background-position: center top;
 		background-size: cover;
 		margin-bottom: 250px;
@@ -50,6 +50,8 @@
 		.textFld{
 			width: 175px;
 		}
+
+
 
 
 		

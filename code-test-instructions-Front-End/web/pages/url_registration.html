@@ -3,19 +3,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Registration</title>
         <link rel="stylesheet" href="pages_style">
-        <script src="scripts/customization.js"></script>
+        <script src="scripts/formValidation.js" type="text/javascript" ></script>
     </head>
     
     <body class="register_body" id="register_body">
+    <div style="text-align:center; width:100%">
+        <h1>Link Customizer</h1><br><br><br>
+    </div>
+    <label>
+        <b>This application will create a customized copy of any hyperlink
+            with the required text but directing to the same address</b><br><br><br>
+
+    </label>
         <form  method="GET" action="/urlRegistration" name="urlRegistrationForm" id="urlRegistrationForm">
 
-            <table class="noselect" id="main_table">
+            <table  class="noselect">
                 <tr>
                     <td><b><label for="originalFld">Original URL</label></b></td>
                     <td><input type="text" id="originalFld" name="originalFld" class="textFld"/>*</td>
     
                     <td>&nbsp;</td>
-                    <td><label style="color:red; display:none;" id="postCodeError">Please insert a URL</label></td>
+                    <td><label style="color:red; display:none;" id="originalError">Please insert a URL</label></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -26,9 +34,13 @@
                     <td><input type="text" id="customizedFld" name ="customizedFld" class="textFld"/>*</td>
     
                     <td>&nbsp;</td>
-                    <td><label style="color:red; display:none;" id="customizedError">Please insert The required customized URL</label></td>
+                    <td><label style="color:red; display:none;" id="customizedError">Please insert the required customized URL</label>
+                        <label style="color:red; display:none;" id="customizedExistsError">Customized URL already exists</label>
+                        <label style="color:red; display:none;" id="recordDoseNotExistError">URL record does not exist</label>
+                    </td>
                 </tr>
             </table>
+            <br><br><br>
             <table>
                 <tr>
                     <td>&nbsp;</td>
@@ -43,7 +55,31 @@
                     </td>
                 </tr>
             </table>
+            <script>
+
+                function validateForm(action) {
+                    let valid = true;
+
+                    document.getElementById('customizedError').style.display = "none";
+                    document.getElementById('originalError').style.display = "none"
+
+                    let customized = document.getElementById('customizedFld').value;
+                    if (customized == null || customized.trim() === "") {
+                        document.getElementById('customizedError').style.display = "block";
+                        valid = false;
+                    }
+                    if (action === "customizeBtn"
+                        && (customized == null || customized.trim() === "")) {
+                        originalError
+                        document.getElementById('originalError').style.display = "block";
+                        valid = false;
+                    }
+                }
+
+            </script>
+
         </form>
+
     </body>
 
 </html>

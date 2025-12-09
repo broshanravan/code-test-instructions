@@ -71,31 +71,37 @@ function validateForm (originalURL){
  * the relevant APIs from the
  * SpringBoot backend
  * */
-function processFormData(customizedUrl, originalUrl, buttonPressed){
+function  processFormData(customizedUrl, originalUrl, buttonPressed){
 
     if(buttonPressed === "customizeBtn"){
-        console.log("customizedUrl = " + customizedUrl);
-        console.log("originalUrl = " + originalUrl);
-        customization.customizeURL(originalUrl, customizedUrl)
-
+        if(customizedUrl!== null && originalUrl !== null
+        && customizedUrl.trim()!== "" && originalUrl.trim() !== "") {
+            customization.customizeURL(originalUrl, customizedUrl)
+        }
     } else if(buttonPressed === "findBtn"){
-        console.log("customizedUrl = " + customizedUrl);
-        let originalURL = customization.getOriginalURL(customizedUrl)
 
-        console.log("originalUrl = " + originalUrl);
-        if(originalURL===null){
-            originalURL= "Record does not exist"
+        if(customizedUrl!==null && customizedUrl.trim()!=="") {
+
+            let originalURL = customization.getOriginalURL(customizedUrl)
+
+            if (originalURL === null ) {
+                originalURL = "Record does not exist"
+            }
+
+
         }
 
-        console.log(originalURL)
-
     } else if(buttonPressed === "deleteBtn"){
-        console.log("customizedUrl = " + customizedUrl);
-        console.log("originalUrl = " + originalUrl);
-        customization.deleteURLRecord(customizedUrl)
+        if(customizedUrl!==null && customizedUrl.trim()!=="") {
+           // console.log("customizedUrl = " + customizedUrl);
+           // console.log("originalUrl = " + originalUrl);
+            customization.deleteURLRecord(customizedUrl)
+        }
     }
 
+
 }
+
 
 
 

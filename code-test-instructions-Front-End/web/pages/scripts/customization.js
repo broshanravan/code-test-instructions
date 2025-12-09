@@ -9,7 +9,7 @@ const axios = require('axios');
 exports.customizeURL = (original_URL,customized_URL) =>{
     const api_url = `http://localhost:8080/customizeTheURL?originalURLStr=${original_URL}&newCustomizedUrl=${customized_URL}`;
     request.post({url:api_url},(error,response) =>{
-        console.log(response.body);
+        //console.log(response.body);
     });
 
 }
@@ -17,7 +17,7 @@ exports.customizeURL = (original_URL,customized_URL) =>{
 exports.getOriginalURL = async ( customized_URL) => {
     const api_url = `http://localhost:8080/getOriginalURL?newCustomizedUrl=${customized_URL}`;
     request({url:api_url},(error,response) =>{
-        console.log(response.body);
+       // console.log(response.body);
         return response.body
     });
 }
