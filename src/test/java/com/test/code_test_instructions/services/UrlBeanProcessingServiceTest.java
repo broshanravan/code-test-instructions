@@ -9,19 +9,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
+
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 ;
-import static org.mockito.ArgumentMatchers.assertArg;
+//import static org.mockito.ArgumentMatchers.assertArg;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
 
@@ -33,7 +32,7 @@ public class UrlBeanProcessingServiceTest {
 
 
 
-    final static Logger logger = Logger.getLogger(UrlBeanProcessingServiceTest.class.toString());
+    //final static Logger logger = Logger.getLogger(UrlBeanProcessingServiceTest.class.toString());
 
 
     @Mock
@@ -77,9 +76,9 @@ public class UrlBeanProcessingServiceTest {
             Assertions.assertEquals("customizedUrl",orginalURL);
 
             } catch (MalformedURLException mfExe){
-            logger.warning(mfExe.getMessage());
+            //logger.warning(mfExe.getMessage());
         }catch (NullPointerException npExe){
-            logger.warning(npExe.getMessage());
+           // logger.warning(npExe.getMessage());
 
         }
     }
