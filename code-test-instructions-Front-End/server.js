@@ -8,6 +8,11 @@ const {body} = require("request");
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/web/pages/images/Photos')));
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+)
 
 
 /**
@@ -34,24 +39,59 @@ app.get('/url_customization',(req,res) => {
  *  */
 app.get("/urlRegistration",(request,response) =>{
 
-    var originalURL = request.query.originalFld;
-    var customisedURL =request.query.customizedFld;
-    //console.log(clicked_id);
-    console.log(originalURL);
-    console.log(customisedURL);
-    validateForm(originalURL, customisedURL,request);
-
+    var originalURL = request.url;
+    //var customisedURL =request.query.customizedFld;
+    validateForm(originalURL);
 });
 
 app.listen(PORT, ()=>console.log(`server running on port: ${PORT}`));
 
-function validateForm (originalURL,customizedURL,request){
+function validateForm (originalURL){
+    const urlParams = new URLSearchParams(originalURL);
+    var customizedUrl ="";
+    var originalUrl ="";
+    var buttonPressed ="";
 
-     let inputValue = request.body.processBtn.body.toString();
+    for (const [key, value] of urlParams) {
+        if(key === "customizedFld"){
+            customizedUrl= value;
+        } else if(key === "processBtn"){
+            buttonPressed = value;
+        } else{
+            originalUrl = value
+        }
+    }
+    processFormData(customizedUrl, originalUrl, buttonPressed);
 
-    console.log("validating");
-    //console.log(inputValue);
+
 }
+
+/**
+ * processing the data into
+ * the relevant APIs from the
+ * SpringBoot backend
+ * */
+function processFormData(customizedUrl, originalUrl, buttonPressed){
+
+    if(buttonPressed === "customizeBtn"){
+        console.log("customizedUrl = " + customizedUrl);
+        console.log("originalUrl = " + originalUrl);
+        customization.customizeURL(originalUrl, customizedUrl)
+
+    } else if(buttonPressed === "findBtn"){
+        console.log("customizedUrl = " + customizedUrl);
+        console.log("originalUrl = " + originalUrl);
+        let originalURL = customization.getOriginalURL(customizedUrl)
+
+    } else if(buttonPressed === "deleteBtn"){
+        console.log("customizedUrl = " + customizedUrl);
+        console.log("originalUrl = " + originalUrl);
+        customization.deleteURLRecord(customizedUrl)
+    }
+
+}
+
+
 
 
 

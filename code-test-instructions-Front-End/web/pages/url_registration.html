@@ -35,10 +35,9 @@
                     <td>
                         <table>
                             <tr>
-                                <td><button class="button" type="submit" name="processBtn" value="validateBtn" id="validateBtn" >validate</button></td>
-                                <td><button class="button" type="submit" name="processBtn" value="customizeBtn"  id="customize">customize</button></td>
-                                <td><button class="button" type="submit" name="processBtn" value="findBtn"  id="findOriginal">find</button></td>
-                                <td><button class="button" type="submit" name="processBtn" value="deleteBtn"  id="delete">delete</button></td>
+                                <td><button class="button" type="submit" name="processBtn" value="customizeBtn"  id="customize"onClick={validateForm("customizeBtn")}>customize</button></td>
+                                <td><button class="button" type="submit" name="processBtn" value="findBtn"  id="findOriginal" onClick={validateForm("findBtnBtn")}>find</button></td>
+                                <td><button class="button" type="submit" name="processBtn" value="deleteBtn"  id="delete" onClick={validateForm("deleteBtn")}>delete</button></td>
                             </tr>
                         </table>
                     </td>
