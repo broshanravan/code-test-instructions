@@ -82,7 +82,7 @@ function  processFormData(customizedUrl, originalUrl, buttonPressed){
 
         if(customizedUrl!==null && customizedUrl.trim()!=="") {
 
-            let originalURL = customization.getOriginalURL(customizedUrl)
+            let originalURL =  customization.getOriginalURL(customizedUrl)
 
             if (originalURL === null ) {
                 originalURL = "Record does not exist"

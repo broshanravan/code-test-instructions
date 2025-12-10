@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -45,9 +46,13 @@ public class URLHandlingController {
                     @ApiResponse(responseCode = "404", description = "Customized URL does not exist")
             })
     @GetMapping(value = "/getOriginalURL")
-    public ResponseEntity<URL> getOriginalUrl(@RequestParam String newCustomizedUrl) throws MalformedURLException {
+    public String getOriginalUrl(@RequestParam String newCustomizedUrl) throws IOException {
        URL originalURL= beanProcessingService.getOriginalUrl(newCustomizedUrl);
-       return ResponseEntity.status(HttpStatus.FOUND).body(originalURL);
+
+       ResponseEntity responseEntity = ResponseEntity.status(HttpStatus.FOUND).body(originalURL);
+       String link = originalURL.getHost();
+       return link;
+
     }
 
 
